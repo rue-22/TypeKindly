@@ -10,7 +10,7 @@
 <div>
 	<a
 		href={menuName === 'home' ? '/' : `/${menuName}`}
-		class="align-center gap flex h-full flex-col items-center rounded-xl border-2 p-4"
+		class="align-center grow-1 flex h-full flex-1 flex-col items-center justify-center rounded-xl text-center text-sm"
 	>
 		{#if menuName == 'home'}
 			{@html home}

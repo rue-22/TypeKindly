@@ -12,7 +12,8 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
+		"test": "npm run test:unit -- --run",
+		"run:android": "npx cap run android"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
