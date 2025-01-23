@@ -6,7 +6,7 @@
 
 <!-- min-height[calc(100vh-0.5rem)] -->
 <main class="flex min-h-screen flex-col">
-	<header class="sticky top-0 w-full bg-black py-[1rem] text-center text-5xl text-white">
+	<header class="sticky top-0 w-full bg-black py-[0.8rem] text-center text-4xl text-white">
 		<h1>TypeKindly</h1>
 	</header>
 

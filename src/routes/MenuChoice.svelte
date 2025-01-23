@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/state';
+
 	let { menuName } = $props();
+	let currPath = $derived(page.url.pathname);
 
 	import book from '/static/book.svg?raw';
 	import calendar from '/static/calendar.svg?raw';
@@ -10,7 +13,7 @@
 <div>
 	<a
 		href={menuName === 'home' ? '/' : `/${menuName}`}
-		class="align-center grow-1 flex h-full flex-1 flex-col items-center justify-center rounded-xl text-center text-sm"
+		class="align-center grow-1 text-sm} flex h-full flex-1 flex-col items-center justify-center rounded-xl text-center"
 	>
 		{#if menuName == 'home'}
 			{@html home}
