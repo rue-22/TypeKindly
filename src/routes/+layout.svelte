@@ -4,16 +4,17 @@
 	import MenuChoice from '../routes/MenuChoice.svelte';
 </script>
 
-<!-- min-height[calc(100vh-0.5rem)] -->
-<main class="flex min-h-screen flex-col">
-	<header class="sticky top-0 w-full bg-black py-[0.8rem] text-center text-4xl text-white">
+<main class="flex min-h-screen flex-col bg-tkl-background pb-[3rem] dark:bg-tkd-background">
+	<header
+		class="sticky top-0 w-full bg-tkl-surface py-[0.8rem] text-center text-4xl text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
+	>
 		<h1>TypeKindly</h1>
 	</header>
 
 	{@render children()}
 
 	<navbar
-		class="fixed bottom-0 flex w-full basis-auto flex-row justify-evenly bg-black py-[0.5rem] text-white"
+		class="bg-black fixed bottom-0 flex w-full basis-auto flex-row justify-evenly bg-tkl-surface py-[0.5rem] text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
 	>
 		<MenuChoice menuName="home" />
 		<MenuChoice menuName="records" />

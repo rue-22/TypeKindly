@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/state';
-
 	let { menuName } = $props();
-	let currPath = $derived(page.url.pathname);
 
-	import book from '/static/book.svg?raw';
-	import calendar from '/static/calendar.svg?raw';
-	import home from '/static/home.svg?raw';
-	import settings from '/static/settings.svg?raw';
+	import book from '../book.svg?raw';
+	import calendar from '../calendar.svg?raw';
+	import home from '../home.svg?raw';
+	import settings from '../settings.svg?raw';
 </script>
 
 <div>

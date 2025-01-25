@@ -1,6 +1,8 @@
 .gradle
 .eslintcache
 
+local.properties
+
 node_modules
 
 # Output

@@ -13,7 +13,9 @@
 		"lint": "prettier --check . && eslint .",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
-		"run:android": "npx cap run android"
+		"sync": "cap sync",
+		"run:android": "npx cap run android",
+		"open:android": "cap open android"
 	},
 	"devDependencies": {
 		"@capacitor/android": "^7.0.1",
