@@ -1,7 +1,14 @@
 <script lang="ts">
+	import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
+	import { isDarkTheme } from '../stores';
 	import '../app.css';
 	let { children } = $props();
+
 	import MenuChoice from '../routes/MenuChoice.svelte';
+
+	let lastClicked = writable('home');
+	setContext('lastClicked', lastClicked);
 </script>
 
 <main class="flex min-h-screen flex-col bg-tkl-background pb-[3rem] dark:bg-tkd-background">

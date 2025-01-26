@@ -1,5 +1,6 @@
 <script>
 	import FilterWordsPanel from '$lib/components/FilterWordsPanel.svelte';
+
 	import words from '$lib/dictionary/words';
 
 	const tagFilters = ['All', 'Good', 'Bad'];

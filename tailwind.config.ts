@@ -13,6 +13,7 @@ export default {
 			'tkd-surface': '#1e1e1e',
 			'tkd-red': '#cf6679',
 			'tkd-text': '#e2e2e2',
+			'tkd-primary': '#b388f5',
 
 			// LIGHT mode
 			'tkl-background': '#ffffff',
@@ -22,6 +23,7 @@ export default {
 		},
 		extend: {}
 	},
+
 
 	plugins: [typography, forms, containerQueries]
 } satisfies Config;

@@ -1,25 +1,31 @@
 <script lang="ts">
-	let { menuName } = $props();
+	import { getContext } from 'svelte';
+	import { type Writable } from 'svelte/store';
+	import Book from '$lib/assets/Book.svelte';
+	import Calendar from '$lib/assets/Calendar.svelte';
+	import Home from '$lib/assets/Home.svelte';
+	import Settings from '$lib/assets/Settings.svelte';
 
-	import book from '../book.svg?raw';
-	import calendar from '../calendar.svg?raw';
-	import home from '../home.svg?raw';
-	import settings from '../settings.svg?raw';
+	let { menuName } = $props();
+	const lastClicked: Writable<string> = getContext('lastClicked');
 </script>
 
 <div>
 	<a
 		href={menuName === 'home' ? '/' : `/${menuName}`}
-		class="align-center grow-1 text-sm} flex h-full flex-1 flex-col items-center justify-center rounded-xl text-center"
+		class="{$lastClicked === menuName
+			? 'text-tkd-primary'
+			: ''} align-center grow-1 text-sm} flex h-full flex-1 flex-col items-center justify-center rounded-xl text-center"
+		onclick={() => lastClicked.set(menuName)}
 	>
 		{#if menuName == 'home'}
-			{@html home}
+			<Home />
 		{:else if menuName == 'records'}
-			{@html calendar}
+			<Calendar />
 		{:else if menuName == 'dictionary'}
-			{@html book}
+			<Book />
 		{:else if menuName == 'settings'}
-			{@html settings}
+			<Settings />
 		{/if}
 
 		<p>{menuName.charAt(0).toUpperCase() + menuName.slice(1)}</p>
