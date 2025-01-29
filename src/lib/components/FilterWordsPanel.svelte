@@ -10,6 +10,29 @@
 	}
 
 	const { langFilters, tagFilters, cardsInfo }: Props = $props();
+
+	let currLang = $state('All');
+	let currTag = $state('All');
+
+	// E ALL
+	// E GOOD
+	// E BAD
+	// F ALL
+	// F GOOD
+	// F BAD
+	// ALL GOOD
+	// ALL BAD
+	// ALL FIL
+
+	let words: Word[] = $state([]);
+
+	$effect(() => {
+		words = cardsInfo.filter((item) => {
+			const matchesLang = currLang === 'All' || item.lang === currLang;
+			const matchesTag = currTag === 'All' || item.tag === currTag;
+			return matchesLang && matchesTag;
+		});
+	});
 </script>
 
 <!-- <FilterPanel filter={tagFilter}/> -->
@@ -19,8 +42,11 @@
 		<ul class="flex list-none flex-row gap-3">
 			{#each tagFilters as tagFilter}
 				<li>
-					<button class="rounded-lg bg-tkl-surface px-4 py-2 text-center dark:bg-tkd-surface"
-						>{tagFilter}</button
+					<button
+						class="{tagFilter === currTag
+							? 'border-[0.5px] bg-tkd-focused'
+							: 'bg-tkd-surface'} rounded-lg px-4 py-2 text-center"
+						onclick={() => (currTag = tagFilter)}>{tagFilter}</button
 					>
 				</li>
 			{/each}
@@ -31,8 +57,11 @@
 		<ul class="flex list-none flex-row gap-3">
 			{#each langFilters as langFilter}
 				<li>
-					<button class="rounded-lg bg-tkl-surface px-4 py-2 text-center dark:bg-tkd-surface"
-						>{langFilter}</button
+					<button
+						class="{langFilter === currLang
+							? 'border-[0.5px] bg-tkd-focused'
+							: 'bg-tkd-surface'} rounded-lg px-4 py-2 text-center"
+						onclick={() => (currLang = langFilter)}>{langFilter}</button
 					>
 				</li>
 			{/each}
@@ -42,7 +71,7 @@
 
 <main class="flex flex-col gap-4">
 	<div class="flex flex-col">
-		{#each cardsInfo as word}
+		{#each words as word}
 			<WordCard {...word} />
 		{/each}
 	</div>
