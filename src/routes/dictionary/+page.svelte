@@ -9,4 +9,3 @@
 
 <FilterWordsPanel {tagFilters} {langFilters} cardsInfo={words} />
 
-<h1>Dictionary</h1>

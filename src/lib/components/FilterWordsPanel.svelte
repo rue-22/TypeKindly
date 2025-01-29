@@ -15,9 +15,7 @@
 <!-- <FilterPanel filter={tagFilter}/> -->
 <!-- <FilterPanel filter={langFilter}/> -->
 <div class="sticky top-[4.1rem] z-10 w-full bg-tkl-background dark:bg-tkd-background">
-	<div
-		class="dark:bg-white flex flex-row justify-center rounded-xl py-2 text-tkl-text dark:text-tkd-text"
-	>
+	<div class="flex flex-row justify-center rounded-xl py-2 text-tkl-text dark:text-tkd-text">
 		<ul class="flex list-none flex-row gap-3">
 			{#each tagFilters as tagFilter}
 				<li>
@@ -29,9 +27,7 @@
 		</ul>
 	</div>
 
-	<div
-		class="dark:bg-white flex flex-row justify-center rounded-xl py-2 text-tkl-text dark:text-tkd-text"
-	>
+	<div class="flex flex-row justify-center rounded-xl py-2 text-tkl-text dark:text-tkd-text">
 		<ul class="flex list-none flex-row gap-3">
 			{#each langFilters as langFilter}
 				<li>
