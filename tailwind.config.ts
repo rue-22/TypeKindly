@@ -15,6 +15,7 @@ export default {
 				'tkd-red': '#cf6679',
 				'tkd-text': '#e2e2e2',
 				'tkd-primary': '#b388f5',
+				'tkd-focused': '#2e2e2e',
 
 				// LIGHT mode
 				'tkl-background': '#ffffff',
