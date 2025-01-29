@@ -14,16 +14,6 @@
 	let currLang = $state('All');
 	let currTag = $state('All');
 
-	// E ALL
-	// E GOOD
-	// E BAD
-	// F ALL
-	// F GOOD
-	// F BAD
-	// ALL GOOD
-	// ALL BAD
-	// ALL FIL
-
 	let words: Word[] = $state([]);
 
 	$effect(() => {
