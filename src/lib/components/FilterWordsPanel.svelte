@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Word } from '$lib/dictionary/words';
+	import { isExplicitOn } from '../../routes/stores';
 	import WordCard from '$lib/components/WordCard.svelte';
 	// import FilterPanel from '$lib/components/FilterPanel.svelte';
 
@@ -11,8 +12,12 @@
 
 	const { langFilters, tagFilters, cardsInfo }: Props = $props();
 
-	let currLang = $state('All');
+	let tempBool = $isExplicitOn;
 	let currTag = $state('All');
+	if (!tempBool) {
+		currTag = 'Good';
+	}
+	let currLang = $state('All');
 
 	let words: Word[] = $state([]);
 
