@@ -14,8 +14,9 @@
 		</label>
 
 		<p class="mt-2">
-			When <span class="font-semibold">Explicit Mode</span> is turned on, bad words in the dictionary
-			will be visible. Turn this setting off to hide them, especially when working with children or minors.
+			When <span class="font-semibold">Explicit Mode</span> is turned on, bad words in the
+			<span class="font-semibold">Dictionary</span> tab will be visible. Turn this setting off to hide
+			them, especially when working with children or minors.
 		</p>
 	</div>
 
