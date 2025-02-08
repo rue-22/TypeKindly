@@ -12,7 +12,7 @@
 
 <main class="flex min-h-screen flex-col bg-tkl-background pb-[4.2rem] dark:bg-tkd-background">
 	<header
-		class="sticky top-0 w-full bg-tkl-surface py-[0.8rem] text-center text-4xl text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
+		class="sticky top-0 z-10 w-full bg-tkl-surface py-[0.8rem] text-center text-4xl font-[Open_Sans] font-bold text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
 	>
 		<h1>TypeKindly</h1>
 	</header>
@@ -27,8 +27,4 @@
 		<MenuChoice menuName="dictionary" />
 		<MenuChoice menuName="settings" />
 	</navbar>
-
-	<!-- <footer class="min-h-5em sticky bottom-0 bg-black text-white">
-		<p>This is the sticky footer.</p>
-	</footer> -->
 </main>
