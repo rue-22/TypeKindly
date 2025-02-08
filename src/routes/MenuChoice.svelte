@@ -10,7 +10,7 @@
 	const lastClicked: Writable<string> = getContext('lastClicked');
 </script>
 
-<div>
+<div class="font-semibold">
 	<a
 		href={menuName === 'home' ? '/' : `/${menuName}`}
 		class="{$lastClicked === menuName

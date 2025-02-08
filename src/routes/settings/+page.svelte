@@ -2,8 +2,8 @@
 	import { isExplicitOn } from '../stores';
 </script>
 
-<!-- EXPLICIT MODE -->
 <div class="mt-3 flex flex-col gap-4">
+	<!-- EXPLICIT MODE -->
 	<div class="rounded-md bg-tkd-surface px-4 py-4 text-justify text-white">
 		<label class="flex cursor-pointer items-center justify-between">
 			<span class="text-xl font-semibold">Explicit Mode</span>
@@ -19,6 +19,4 @@
 			them, especially when working with children or minors.
 		</p>
 	</div>
-
-	<div class="rounded-md bg-tkd-surface px-4 py-4 text-justify text-white">Another Setting</div>
 </div>
