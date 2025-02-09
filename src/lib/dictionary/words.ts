@@ -2,7 +2,6 @@ export interface Word {
 	tag: string; // Good OR Bad
 	lang: string; // English OR Filipino
 	word: string;
-	definition?: string;
 }
 
 const words: Word[] = [
