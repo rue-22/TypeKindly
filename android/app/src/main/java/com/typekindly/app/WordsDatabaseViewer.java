@@ -50,7 +50,7 @@ public class WordsDatabaseViewer {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Map<String, int[]> resultMap = new LinkedHashMap<>(); // Preserve order
 
-        String query = "SELECT lw.date_logged, wd.tag " +
+        String query = "SELECT lw.date_logged, wd.tag, lw.frequency " +
                 "FROM logged_words lw " +
                 "JOIN word_dictionary wd ON lw.word = wd.word " +
                 "ORDER BY lw.date_logged";
@@ -61,10 +61,11 @@ public class WordsDatabaseViewer {
             do {
                 String date = cursor.getString(0);
                 String tag = cursor.getString(1);
+                int frequency = cursor.getInt(2);
 
                 // Check if date exists, otherwise create a new count array
                 if (!resultMap.containsKey(date)) {
-                    resultMap.put(date, new int[3]); // [Good, Bad, Neutral]
+                    resultMap.put(date, new int[3]);
                 }
 
                 // Get reference to the existing count array
@@ -73,13 +74,13 @@ public class WordsDatabaseViewer {
                 // Update count based on tag
                 switch (tag) {
                     case "Good":
-                        counts[0]++;
+                        counts[0] += frequency;
                         break;
                     case "Bad":
-                        counts[1]++;
+                        counts[1] += frequency;
                         break;
                     case "Neutral":
-                        counts[2]++;
+                        counts[2] += frequency;
                         break;
                 }
 
