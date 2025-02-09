@@ -36,7 +36,7 @@ public class WordsDatabaseViewer {
                 logs.add(word + "," + tag + "," + language + "," + date + "," + count);
             }
         } catch (Exception e) {
-            Log.e("DataViewer", "Error fetching all logs", e);
+            Log.e("DataViewer", "Error fetching all logs. Msg: " + e.getMessage());
         } finally {
             if (cursor != null) cursor.close();  // Ensure cursor is always closed
         }

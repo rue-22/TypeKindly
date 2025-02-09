@@ -24,9 +24,9 @@ public class MainActivity extends BridgeActivity {
         try (WordsDatabase dbHelper = new WordsDatabase(this);
              SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             DictionaryManager dictionaryManager = new DictionaryManager(this);
-            dictionaryManager.insertWordsToDB(this);
+            dictionaryManager.SyncWordsJSONToDB(this);
         } catch (Exception e) {
-            Log.e("Main Activity", "Initialize Databased failed");
+            Log.e("Main Activity", "Initialize Databased failed. Msg: " + e.getMessage());
         }
 
         // Temporary
@@ -39,7 +39,7 @@ public class MainActivity extends BridgeActivity {
                     fetchAndLogWords();
                 }
                 catch (Exception e){
-                    Log.e("Test View", "no database yet");
+                    Log.e("Test View", "no database yet Msg: " + e.getMessage());
                 }
                 handler.postDelayed(this, 5000); // Repeat every 5 seconds
             }
