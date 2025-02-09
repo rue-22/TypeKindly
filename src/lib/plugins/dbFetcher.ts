@@ -1,13 +1,8 @@
+import { databaseResult } from '../../routes/stores.ts';
+import { KeyloggerPlugin, DailyStats } from './keyloggerPlugin.ts';
 
-import { writable } from 'svelte/store';
-import { KeyloggerPlugin } from './keyloggerplugin';
-import type { DailyStats } from './keyloggerplugin';
-
-
-// Call this function to fetch from DB
-
-export const haha = writable<string>("test")
-
+// for each date, count(good, bad, neutral, total)
+// for each word in dict, return count() regardless of date
 
 export const fetchDaily = async () => {
     if (!KeyloggerPlugin) {
@@ -28,11 +23,11 @@ export const fetchDaily = async () => {
         const dailyStats: DailyStats[] = data.dailyStats;
 
         // Convert data into a readable string
-        let result = dailyStats.map(log =>
+        const result = dailyStats.map(log =>
             `Date: ${log.date}, Good: ${log.good}, Bad: ${log.bad}, Neutral: ${log.neutral}`
         ).join("\n");
 
-        haha.set(result);
+        databaseResult.set(result);
         console.log("Fetch complete:", result);
         
     } catch (error) {

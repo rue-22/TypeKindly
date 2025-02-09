@@ -20,6 +20,3 @@ export interface KeyLoggerPlugin {
 export const KeyloggerPlugin = Capacitor.getPlatform() !== 'web' 
     ? registerPlugin<KeyLoggerPlugin>('KeyloggerPlugin') 
     : null;
-
-
-
