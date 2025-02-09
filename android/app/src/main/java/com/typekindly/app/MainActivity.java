@@ -24,7 +24,7 @@ public class MainActivity extends BridgeActivity {
         try (WordsDatabase dbHelper = new WordsDatabase(this);
              SQLiteDatabase db = dbHelper.getWritableDatabase()) {
             DictionaryManager dictionaryManager = new DictionaryManager(this);
-            dictionaryManager.insertWordsToDB(this);
+            dictionaryManager.SyncWordsJSONToDB(this);
         } catch (Exception e) {
             Log.e("Main Activity", "Initialize Databased failed. Msg: " + e.getMessage());
         }

@@ -1,9 +1,3 @@
   [
-    { "tag": "Good", "lang": "English", "word": "love" },
-    { "tag": "Bad", "lang": "Filipino", "word": "bobo" },
-    { "tag": "Good", "lang": "Filipino", "word": "mahal" },
-    { "tag": "Bad", "lang": "English", "word": "nigga" },
-    { "tag": "Bad", "lang": "English", "word": "fuck" },
-    { "tag": "Neutral", "lang": "English", "word": "dog" },
-    { "tag": "Bad", "lang": "English", "word": "bitch" }
+    { "tag": "Good", "lang": "English", "word": "love" }
   ]
