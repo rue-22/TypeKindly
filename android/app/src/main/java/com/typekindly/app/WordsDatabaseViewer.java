@@ -6,7 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WordsDatabaseViewer {
     private final WordsDatabase dbHelper;
@@ -42,4 +45,49 @@ public class WordsDatabaseViewer {
         }
         return logs;
     }
+
+    public Map<String, int[]> getDailyTagCounts() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Map<String, int[]> resultMap = new LinkedHashMap<>(); // Preserve order
+
+        String query = "SELECT lw.date_logged, wd.tag " +
+                "FROM logged_words lw " +
+                "JOIN word_dictionary wd ON lw.word = wd.word " +
+                "ORDER BY lw.date_logged";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(0);
+                String tag = cursor.getString(1);
+
+                // Check if date exists, otherwise create a new count array
+                if (!resultMap.containsKey(date)) {
+                    resultMap.put(date, new int[3]); // [Good, Bad, Neutral]
+                }
+
+                // Get reference to the existing count array
+                int[] counts = resultMap.get(date);
+
+                // Update count based on tag
+                switch (tag) {
+                    case "Good":
+                        counts[0]++;
+                        break;
+                    case "Bad":
+                        counts[1]++;
+                        break;
+                    case "Neutral":
+                        counts[2]++;
+                        break;
+                }
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return resultMap;
+    }
+
 }
