@@ -15,33 +15,3 @@ const KeyloggerPlugin = Capacitor.getPlatform() !== 'web'
 
 export default KeyloggerPlugin;
 
-/* MUST READ: sample code, kahit sa startstream na function lang basahin mo, just ask Ligs pag may questions 
-
-    import { Capacitor } from '@capacitor/core';
-    import { writable } from 'svelte/store';
-    import KeyloggerPlugin from './keyloggerplugin';
-    
-    export const testest = Capacitor.getPlatform() !== 'web'  
-        ? writable<string>("Kung ito nakikita mo walang nangnyayare")
-        : writable<string>("WEB PALA TO");
-    
-    //basta ito yung pinapalitan hahaha
-    export const test11 = writable<string>("hahahahaha")
-    
-
-    //Call via button
-    export const startStream = async () => {
-            if (KeyloggerPlugin) {
-                console.log("Fetch data");
-                const data = await KeyloggerPlugin.fetchData()
-                let result = ""
-                for (let log of data.allLoggedData) {
-                    result = result + log + "/ \n"
-                }
-                test11.set(result); 
-                }
-        };
-*/
-
-
-

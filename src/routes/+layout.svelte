@@ -12,7 +12,7 @@
 
 <main class="flex min-h-screen flex-col bg-tkl-background pb-[4.2rem] dark:bg-tkd-background">
 	<header
-		class="sticky top-0 z-10 w-full bg-tkl-surface py-[0.8rem] text-center text-4xl font-[Open_Sans] font-bold text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
+		class="sticky top-0 z-10 w-full border-b border-b-tkd-background bg-tkl-surface py-[0.8rem] text-center text-4xl font-[Open_Sans] font-bold text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
 	>
 		<h1>TypeKindly</h1>
 	</header>
@@ -20,7 +20,7 @@
 	{@render children()}
 
 	<navbar
-		class="fixed bottom-0 flex w-full basis-auto flex-row justify-evenly bg-tkl-surface py-[0.5rem] text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
+		class="fixed bottom-0 flex w-full basis-auto flex-row justify-evenly border-t border-t-tkd-background bg-tkl-surface py-[0.5rem] text-tkl-text dark:bg-tkd-surface dark:text-tkd-text"
 	>
 		<MenuChoice menuName="home" />
 		<MenuChoice menuName="records" />

@@ -1,6 +1,8 @@
 <script>
 	import { Chart } from 'flowbite-svelte';
 
+	// props ng good, bad, and neutral words for the day
+
 	const options = {
 		series: [52.8, 26.8, 20.4],
 		colors: ['#FF645C', '#097969', '#818589'],
@@ -33,7 +35,7 @@
 	};
 </script>
 
-<div class="flex items-center justify-between rounded-xl bg-tkd-surface px-4 py-2 text-white">
+<div class="flex items-center justify-between rounded-xl bg-tkd-surface px-4 text-white">
 	<div>
 		<p class="text-xl">Date</p>
 		<p class="mb-2 text-lg font-bold">200 words typed</p>
