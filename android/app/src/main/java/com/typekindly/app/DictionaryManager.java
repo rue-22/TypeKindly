@@ -22,6 +22,8 @@ public class DictionaryManager {
         db.beginTransaction();
 
         try {
+            Log.i("Dictionary Manager", "Adding Dictionary words");
+
             InputStream is = context.getAssets().open("words.json");
             int size = is.available();
             byte[] buffer = new byte[size];
@@ -40,9 +42,9 @@ public class DictionaryManager {
 
                 // Extract fields safely
                 String word = wordObject.optString("word", "").toLowerCase();
-                String tag = wordObject.optString("tag", "Unknown");
+                String tag = wordObject.optString("tag", "Neutral");
                 String language = wordObject.optString("lang", "Unknown");
-
+//                Log.i("Dictionary Manager", "register: "+ word);
                 if (!word.isEmpty()) {  // Ensure word is not empty before inserting
                     stmt.bindString(1, word);
                     stmt.bindString(2, tag);
@@ -52,7 +54,7 @@ public class DictionaryManager {
             }
             db.setTransactionSuccessful();
         } catch (Exception e) {
-            Log.e("Dictionary Manager","Initializing Database dictionary table failed");
+            Log.e("Dictionary Manager","Initializing Database dictionary table failed. Msg: " + e.getMessage());
         } finally {
             db.endTransaction();
         }

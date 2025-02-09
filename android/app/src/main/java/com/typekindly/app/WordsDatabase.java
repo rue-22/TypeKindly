@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class WordsDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "TypeKindly_DB.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public WordsDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -16,7 +16,7 @@ public class WordsDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createDictionaryTable = "CREATE TABLE word_dictionary (" +
                 "word TEXT PRIMARY KEY, " +
-                "tag TEXT CHECK(tag IN ('Good', 'Bad')) NOT NULL, " +
+                "tag TEXT CHECK(tag IN ('Good', 'Bad', 'Neutral')) NOT NULL, " +
                 "language TEXT NOT NULL" +
                 ")";
         db.execSQL(createDictionaryTable);
