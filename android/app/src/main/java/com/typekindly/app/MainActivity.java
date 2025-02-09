@@ -8,6 +8,7 @@ import android.util.Log;
 import com.getcapacitor.BridgeActivity;
 
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends BridgeActivity {
     // Temporary
@@ -36,7 +37,7 @@ public class MainActivity extends BridgeActivity {
             @Override
             public void run() {
                 try {
-                    fetchAndLogWords();
+                    fetchDailyWords();
                 }
                 catch (Exception e){
                     Log.e("Test View", "no database yet Msg: " + e.getMessage());
@@ -47,6 +48,8 @@ public class MainActivity extends BridgeActivity {
 
 //        handler.post(runnable); // Start the loop
     }
+
+    // This is code is purely for testing !!!
     private void fetchAndLogWords() {
 
         List<String> words = dataViewer.getAllLogs();
@@ -54,6 +57,37 @@ public class MainActivity extends BridgeActivity {
         for (String word : words) {
             Log.d("DB_LOG", word);
         }
+    }
+    private void fetchDailyWords(){
+        Map<String, int[]> test = dataViewer.getDailyTagCounts();
+
+        // Check if the map is empty
+        if (test == null || test.isEmpty()) {
+            Log.d("DailyWords", "No data available.");
+            return;
+        }
+
+        // Iterate through the map and log each date's tag counts
+        for (Map.Entry<String, int[]> entry : test.entrySet()) {
+            String date = entry.getKey();
+            int[] counts = entry.getValue();
+
+            // Ensure counts array has 3 elements
+            if (counts.length < 3) {
+                Log.e("DailyWords", "Invalid data for date: " + date);
+                continue;
+            }
+
+            int goodCount = counts[0];
+            int badCount = counts[1];
+            int neutralCount = counts[2];
+
+            Log.d("DailyWords", "Date: " + date +
+                    ", Good: " + goodCount +
+                    ", Bad: " + badCount +
+                    ", Neutral: " + neutralCount);
+        }
+
     }
     @Override
     public void onDestroy() {
