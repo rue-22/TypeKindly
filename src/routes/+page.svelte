@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import HomeCard from '$lib/components/HomeCard.svelte';
 	import { databaseResult } from './stores';
-	import { haha, fetchDaily } from "$lib/plugins/dbFetcher";
+	import { fetchDaily } from "$lib/plugins/dbFetcher";
 
 	let greeting = '';
 	let currDate = '';
@@ -66,5 +66,5 @@
 	</div>
 </main>
 
-<p class="text-white">{$haha}</p>
+<p class="text-white">{$databaseResult}</p>
 <button class="rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Refresh</button>
