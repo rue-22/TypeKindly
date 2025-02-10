@@ -2,13 +2,19 @@
 	import { onMount } from 'svelte';
 	import HomeCard from '$lib/components/HomeCard.svelte';
 	import { databaseResult } from './stores';
-	import { fetchDaily } from "$lib/plugins/dbFetcher";
+	import { fetchDaily } from '$lib/plugins/dbFetcher';
 
-	let greeting = '';
-	let currDate = '';
-	let currDay = '';
+	let greeting = $state('');
+	let currDate = $state('');
+	let currDay = $state('');
+	let good = $state('0');
+	let bad = $state('0');
+	let neutral = $state('0');
+	let res = $state('');
 
-	onMount(() => {
+	onMount(async () => {
+		await fetchDaily();
+
 		const hour = new Date().getHours();
 		if (hour >= 4 && hour < 12) {
 			greeting = 'Good morning!';
@@ -28,20 +34,29 @@
 			weekday: 'long'
 		});
 	});
-</script>
 
-<!-- <div class="mt-12 flex flex-col items-center justify-center gap-4 text-white"> -->
-<!-- 	<textarea class="min-h-32 min-w-full bg-tkd-surface" bind:value={textInput}></textarea> -->
-<!---->
-<!-- 	<button -->
-<!-- 		class="rounded-md border-2 px-3 py-4" -->
-<!-- 		onclick={() => { -->
-<!-- 			textInput = ''; -->
-<!-- 		}}>Reset uwu</button -->
-<!-- 	> -->
-<!-- </div> -->
-<!---->
-<!-- <p class="mt-8 text-center text-white">{textInput}</p> -->
+	$effect(() => {
+		res = $databaseResult;
+		const today = new Intl.DateTimeFormat('en-CA', {
+			timeZone: 'Asia/Manila',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit'
+		}).format(new Date());
+
+		const days = res.split('\n');
+		const todayRecord = days.find((record) => {
+			const [date] = record.split(',');
+			return date === today;
+		});
+
+		let tokens: string[] = [];
+		if (todayRecord) {
+			tokens = todayRecord.split(',');
+			[, good, bad, neutral] = tokens;
+		}
+	});
+</script>
 
 <main class="flex flex-col gap-4 text-white">
 	<!-- greetings -->
@@ -53,18 +68,16 @@
 		</div>
 	</div>
 
-	<!-- daily summary -->
-	<!-- <HomeCard title="Overall Rating for the Day" desc="Positive" color="" square="false" /> -->
-
+	<!-- daily stats -->
 	<div class="rounded-xl bg-tkd-surface px-4 pb-4 pt-2">
 		<h3 class="mb-1 text-xl font-medium">Daily Stats</h3>
 		<div class="flex justify-between">
-			<HomeCard title="Good" desc="360" color="2ecc71" />
-			<HomeCard title="Bad" desc="300" color="e74c3c" />
-			<HomeCard title="Neutral" desc="200" color="95a5a6" />
+			<HomeCard title="Good" desc={good} color="2ecc71" />
+			<HomeCard title="Bad" desc={bad} color="e74c3c" />
+			<HomeCard title="Neutral" desc={neutral} color="95a5a6" />
 		</div>
 	</div>
 </main>
 
-<p class="text-white">{$databaseResult}</p>
-<button class="rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Refresh</button>
+<!-- <p class="text-white">{$databaseResult}</p> -->
+<button class="rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Fetch Daily</button>
