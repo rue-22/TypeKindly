@@ -8,22 +8,29 @@
 		bad: number;
 	}
 
-	// let res = $state('');
-	let date = $state('');
-	let good = $state('');
-	let bad = $state('');
-
-	let records: Record[] = $state([]);
 	let res = $state($databaseResult);
-	const days = res.split('\n');
+	let records: Record[] = $state([]);
 
-	days.map((day) => {
-		[date, good, bad] = day.split(',');
-		records.push({ date: date, good: parseInt(good), bad: parseInt(bad) });
+	$effect(() => {
+		res = $databaseResult;
+		const days = res.split('\n');
+
+		const newRecords = days.map((day) => {
+			const [date, good, bad] = day.split(',');
+			return {
+				date: date,
+				good: parseInt(good) || 0,
+				bad: parseInt(bad) || 0
+			};
+		});
+
+		// sorts records bjk wy date
+		newRecords.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+		if (JSON.stringify(newRecords) !== JSON.stringify(records)) {
+			records = newRecords;
+		}
 	});
-
-	// records sorter by date
-	records.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 </script>
 
 <main class="mt-3 flex flex-col gap-3">

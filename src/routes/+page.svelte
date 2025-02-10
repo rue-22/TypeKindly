@@ -7,10 +7,6 @@
 	let greeting = $state('');
 	let currDate = $state('');
 	let currDay = $state('');
-	let good = $state('0');
-	let bad = $state('0');
-	let neutral = $state('0');
-	let res = $state('');
 
 	onMount(async () => {
 		await fetchDaily();
@@ -35,6 +31,12 @@
 		});
 	});
 
+	let good = $state('0');
+	let bad = $state('0');
+	let res = $state($databaseResult);
+	let totalGood = $state(0);
+	let totalBad = $state(0);
+
 	$effect(() => {
 		res = $databaseResult;
 		const today = new Intl.DateTimeFormat('en-CA', {
@@ -45,15 +47,30 @@
 		}).format(new Date());
 
 		const days = res.split('\n');
+
+		let newTotalGood = 0;
+		let newTotalBad = 0;
+		days.forEach((record) => {
+			const tokens = record.split(',');
+			const [, good, bad] = tokens;
+			newTotalGood += parseInt(good) || 0;
+			newTotalBad += parseInt(bad) || 0;
+		});
+		if (newTotalGood !== totalGood) {
+			totalGood = newTotalGood;
+		}
+		if (newTotalBad !== totalBad) {
+			totalBad = newTotalBad;
+		}
+
 		const todayRecord = days.find((record) => {
 			const [date] = record.split(',');
 			return date === today;
 		});
 
-		let tokens: string[] = [];
 		if (todayRecord) {
-			tokens = todayRecord.split(',');
-			[, good, bad, neutral] = tokens;
+			good = todayRecord.split(',')[1];
+			bad = todayRecord.split(',')[2];
 		}
 	});
 </script>
@@ -71,13 +88,21 @@
 	<!-- daily stats -->
 	<div class="rounded-xl bg-tkd-surface px-4 pb-4 pt-2">
 		<h3 class="mb-1 text-xl font-medium">Daily Stats</h3>
-		<div class="flex justify-between">
+		<div class="flex justify-evenly">
 			<HomeCard title="Good" desc={good} color="2ecc71" />
 			<HomeCard title="Bad" desc={bad} color="e74c3c" />
-			<HomeCard title="Neutral" desc={neutral} color="95a5a6" />
+		</div>
+	</div>
+
+	<!-- overall stats -->
+	<div class="rounded-xl bg-tkd-surface px-4 pb-4 pt-2">
+		<h3 class="mb-1 text-xl font-medium">Overall Stats</h3>
+		<div class="flex justify-evenly">
+			<HomeCard title="Good" desc={totalGood.toString()} color="2ecc71" />
+			<HomeCard title="Bad" desc={totalBad.toString()} color="e74c3c" />
 		</div>
 	</div>
 </main>
 
 <!-- <p class="text-white">{$databaseResult}</p> -->
-<button class="rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Fetch Daily</button>
+<button class="mt-2 rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Fetch Daily</button>
