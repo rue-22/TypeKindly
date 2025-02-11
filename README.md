@@ -16,7 +16,7 @@ TODO: will add next time
 This project was developed in fulfillment of the requirements of CS 191 and CS 192 (Software Engineering I and II).
 
 The following developers were involved in the creation of this project:
-- [Justin Lidasan](https://github.com/parkouralvoil)
+- [Justin R. Lidasan](https://github.com/parkouralvoil)
 - [Prince Harry U. Quijano](https://github.com/Harry2166)
 - [Carl John S. Salces](https://github.com/rue-22)
 - [John Ysaac S. Villamil](https://github.com/LigsQt)
