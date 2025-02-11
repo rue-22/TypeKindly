@@ -1,4 +1,4 @@
-import { databaseResult, test } from '../../routes/stores.ts';
+import { databaseResult, databaseWordCount } from '../../routes/stores.ts';
 import { KeyloggerPlugin } from './keyloggerPlugin.ts';
 import type { DailyStats } from './keyloggerPlugin.ts';
 
@@ -62,7 +62,7 @@ export const fetchAllWords = async() => {
             }
 }
 
-        test.set(result);
+        databaseWordCount.set(result);
         console.log("Fetch complete:", result);
     } catch (error) {
         console.error("Error fetching daily stats:", error);
