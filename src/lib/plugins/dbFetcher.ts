@@ -1,4 +1,4 @@
-import { databaseResult } from '../../routes/stores.ts';
+import { databaseResult, test } from '../../routes/stores.ts';
 import { KeyloggerPlugin } from './keyloggerPlugin.ts';
 import type { DailyStats } from './keyloggerPlugin.ts';
 
@@ -34,3 +34,37 @@ export const fetchDaily = async () => {
         console.error("Error fetching daily stats:", error);
     }
 };
+
+export const fetchAllWords = async() => {
+    if (!KeyloggerPlugin) {
+        console.error("KeyloggerPlugin is not available");
+        return;
+    }
+
+    try {
+        console.log("Fetching data...");
+        const data = await KeyloggerPlugin.fetchAllWordCount();
+        
+        if (!data ) {
+            console.error("Invalid response from plugin");
+            return;
+        }
+
+        // Ensure proper typing
+        const allWordCount: Record<string, number> = data;
+
+        // Convert data into a readable string
+        let result = '';
+        for (const word in allWordCount) {
+            if (Object.prototype.hasOwnProperty.call(allWordCount, word)) {
+                console.log(`${word} ${allWordCount[word]}\n`);
+                result += `${word} ${allWordCount[word]}\n`;
+            }
+}
+
+        test.set(result);
+        console.log("Fetch complete:", result);
+    } catch (error) {
+        console.error("Error fetching daily stats:", error);
+    }
+}

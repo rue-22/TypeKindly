@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import HomeCard from '$lib/components/HomeCard.svelte';
-	import { databaseResult } from './stores';
-	import { fetchDaily } from '$lib/plugins/dbFetcher';
+	import { databaseResult, databaseWordCount } from './stores';
+	import { fetchAllWords, fetchDaily } from '$lib/plugins/dbFetcher';
 
 	let greeting = $state('');
 	let currDate = $state('');
@@ -106,3 +106,5 @@
 
 <!-- <p class="text-white">{$databaseResult}</p> -->
 <button class="mt-2 rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Fetch Daily</button>
+<button class="mt-2 rounded-lg border-2 py-2 text-white" onclick={fetchAllWords}>Fetch Word Count</button>
+<p class="text-white">{$databaseWordCount} </p>

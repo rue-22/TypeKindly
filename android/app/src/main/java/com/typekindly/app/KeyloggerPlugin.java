@@ -38,11 +38,11 @@ public class KeyloggerPlugin extends Plugin{
         Log.v("Plugin Methods", "Daily Stats: Fetching data from frontend");
 
         WordsDatabaseViewer dataViewer = new WordsDatabaseViewer(getContext());
-        Map<String, int[]> test = dataViewer.getDailyTagCounts();
+        Map<String, int[]> rawData = dataViewer.getDailyTagCounts();
 
         JSONArray jsonArray = new JSONArray();
 
-        for (Map.Entry<String, int[]> entry : test.entrySet()) {
+        for (Map.Entry<String, int[]> entry : rawData.entrySet()) {
             String date = entry.getKey();
             int[] counts = entry.getValue();
 
@@ -73,5 +73,24 @@ public class KeyloggerPlugin extends Plugin{
         call.resolve(data);
 
         Log.v("Plugin Method", "Daily Stats: Fetching data success!");
+    }
+
+    @PluginMethod()
+    public void fetchAllWordCount(PluginCall call){
+        Log.v("Plugin Methods", "Overall Frequency: Fetching data from frontend");
+
+        WordsDatabaseViewer dataViewer = new WordsDatabaseViewer(getContext());
+        Map<String, Integer> rawData = dataViewer.getAllWordCount();
+
+        JSObject data = new JSObject();
+
+        for (Map.Entry<String, Integer> entry : rawData.entrySet()) {
+            data.put(entry.getKey(), entry.getValue());
+//            Log.i("Plugin Method", entry.getKey() + ": " + entry.getValue().toString());
+        }
+
+        call.resolve(data);
+
+        Log.v("Plugin Method", "Overall Frequency: Fetching data success!");
     }
 }

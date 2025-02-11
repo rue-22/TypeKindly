@@ -14,6 +14,7 @@ export interface KeyLoggerPlugin {
     */
     fetchData(): Promise<{ allLoggedData: Array<string> }>;
     fetchDailyStats(): Promise<{ dailyStats: DailyStats[] }>
+    fetchAllWordCount(): Promise<Record<string, number>> 
 }
 
 // Only register the plugin for native platforms

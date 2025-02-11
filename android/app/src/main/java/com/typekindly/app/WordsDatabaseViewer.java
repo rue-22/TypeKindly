@@ -91,4 +91,20 @@ public class WordsDatabaseViewer {
         return resultMap;
     }
 
+    public Map<String, Integer> getAllWordCount() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Map<String, Integer> wordFrequencies = new HashMap<>();
+        String query = "SELECT word, SUM(frequency) AS total_frequency FROM logged_words GROUP BY word";
+
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
+            String word = cursor.getString(0);
+            int frequency = cursor.getInt(1);
+            wordFrequencies.put(word, frequency);
+        }
+        cursor.close();
+
+        return wordFrequencies;
+    }
+
 }
