@@ -1,38 +1,22 @@
-# TypeKindlyUI
+# TypeKindly
+TypeKindly is blah blah blah
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+# Development
+The mobile application is a single-page [SvelteKit](https://svelte.dev/) application with [CapacitorJS](https://capacitorjs.com/) for cross-platform support for Android.
 
-## Creating a project
+## Prerequisites
+- [Node.js](https://nodejs.org/en)
+- [pnpm](https://pnpm.io/)
+- [Android Studio](https://developer.android.com/studio)
+- Android 14 (API 34)
 
-If you're seeing this, you've probably already done this step. Congrats!
+TODO: will add next time
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Team
+This project was developed in fulfillment of the requirements of CS 191 and CS 192 (Software Engineering I and II).
 
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The following developers were involved in the creation of this project:
+- [Justin Lidasan](https://github.com/parkouralvoil)
+- [Prince Harry U. Quijano](https://github.com/Harry2166)
+- [Carl John S. Salces](https://github.com/rue-22)
+- [John Ysaac S. Villamil](https://github.com/LigsQt)
