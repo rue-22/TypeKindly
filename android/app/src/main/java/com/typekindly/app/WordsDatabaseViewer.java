@@ -3,8 +3,14 @@ package com.typekindly.app;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -105,6 +111,54 @@ public class WordsDatabaseViewer {
         cursor.close();
 
         return wordFrequencies;
+    }
+
+    public void exportData() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        JSONObject databaseJson = new JSONObject();
+        Log.v("Exporting Data", "Exporting Data...");
+
+        try {
+            JSONArray loggedWordsArray = new JSONArray();
+            String query = "SELECT lw.word, lw.date_logged, lw.frequency, wd.tag, wd.language " +
+                    "FROM logged_words lw " +
+                    "JOIN word_dictionary wd ON lw.word = wd.word " +
+                    "ORDER BY lw.date_logged";
+
+            Cursor cursor = db.rawQuery(query, null);
+            while (cursor.moveToNext()) {
+                JSONObject wordObject = new JSONObject();
+                wordObject.put("word", cursor.getString(0));
+                wordObject.put("date_logged", cursor.getString(1));
+                wordObject.put("frequency", cursor.getInt(2));
+                wordObject.put("tag", cursor.getString(3));
+                wordObject.put("language", cursor.getString(4));
+                loggedWordsArray.put(wordObject);
+            }
+            cursor.close();
+
+            databaseJson.put("logged_words", loggedWordsArray);
+
+            saveJsonToFile(databaseJson);
+        } catch (Exception e) {
+            Log.e("Exporting Data", "Error exporting database", e);
+        }
+
+    }
+
+    private void saveJsonToFile(JSONObject jsonObject) {
+        try {
+            File downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            File file = new File(downloadsFolder, "logged_words.json");
+
+            FileWriter writer = new FileWriter(file);
+            writer.write(jsonObject.toString(4));
+            writer.flush();
+            writer.close();
+            Log.v("Exporting Data", "Database exported to: " + file.getAbsolutePath());
+        } catch (Exception e) {
+            Log.e("Exporting Data", "Error saving JSON file", e);
+        }
     }
 
 }
