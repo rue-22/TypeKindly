@@ -2,19 +2,16 @@
 	import { Select, Label } from 'flowbite-svelte';
 	import type { Word } from '$lib/dictionary/words';
 	import { isExplicitOn } from '../../routes/stores';
-	import { databaseWordCount } from '../../routes/stores';
+	import { databaseWordCount, latestTag, latestLang, latestSort } from '../../routes/stores';
 	import WordCard from '$lib/components/WordCard.svelte';
 
 	let tempBool = $isExplicitOn;
 	// for filter
-	let currTag = $state('All');
 	if (!tempBool) {
-		currTag = 'Good';
+		latestTag.set('Good');
 	}
-	let currLang = $state('All');
 
 	// for sorter
-	let currSortParam = $state('Alphabetical');
 	const sortParams = [
 		{ value: 'Alphabetical', name: 'Alphabetical' },
 		{ value: 'Count', name: 'Count' }
@@ -45,8 +42,8 @@
 	$effect(() => {
 		// filter what words will be seen in the dictionary
 		const newWordsInDict = cardsInfo.filter((item) => {
-			const matchesLang = currLang === 'All' || item.lang === currLang;
-			const matchesTag = currTag === 'All' || item.tag === currTag;
+			const matchesLang = $latestLang === 'All' || item.lang === $latestLang;
+			const matchesTag = $latestTag === 'All' || item.tag === $latestTag;
 			return matchesLang && matchesTag;
 		});
 		if (JSON.stringify(newWordsInDict) !== JSON.stringify(wordsInDict)) {
@@ -84,7 +81,7 @@
 		});
 
 		const sortedWordsWithCount = [...newWordsWithCount].sort((a, b) => {
-			if (currSortParam === 'Count') {
+			if ($latestSort === 'Count') {
 				return b.count - a.count;
 			} else {
 				return a.word.localeCompare(b.word);
@@ -113,7 +110,7 @@
 				defaultClass="text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-tkd-surface dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 h-12"
 				placeholder=""
 				items={tagFilters}
-				bind:value={currTag}
+				bind:value={$latestTag}
 			>
 				{#each tagFilters as { value, name }}
 					<option {value}>{name}</option>
@@ -128,7 +125,7 @@
 				defaultClass="text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-tkd-surface dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 h-12"
 				placeholder=""
 				items={langFilters}
-				bind:value={currLang}
+				bind:value={$latestLang}
 			>
 				{#each langFilters as { value, name }}
 					<option {value}>{name}</option>
@@ -144,7 +141,7 @@
 			defaultClass="text-gray-900 disabled:text-gray-400 bg-gray-50 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-tkd-surface dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:disabled:text-gray-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 h-12"
 			placeholder=""
 			items={sortParams}
-			bind:value={currSortParam}
+			bind:value={$latestSort}
 		>
 			{#each sortParams as { value, name }}
 				<option {value}>{name}</option>

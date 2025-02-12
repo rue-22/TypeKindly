@@ -20,11 +20,6 @@
 		{ value: 'English', name: 'English' },
 		{ value: 'Filipino', name: 'Filipino' }
 	];
-
-	// $effect(() => {
-	// 	res = $databaseWordCount;
-	// 	const indivWords = res.split('\n');
-	// });
 </script>
 
 <FilterWordsPanel {tagFilters} {langFilters} cardsInfo={words} />
