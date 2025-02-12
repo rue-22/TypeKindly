@@ -93,4 +93,12 @@ public class KeyloggerPlugin extends Plugin{
 
         Log.v("Plugin Method", "Overall Frequency: Fetching data success!");
     }
+
+    @PluginMethod()
+    public void exportData(PluginCall call){
+        Log.v("Plugin Methods", "Exporting Data: Attempting to export");
+        WordsDatabaseViewer dataViewer = new WordsDatabaseViewer(getContext());
+        dataViewer.exportData();
+        Log.v("Plugin Methods", "Exporting Data: Export Successful");
+    }
 }
