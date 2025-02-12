@@ -149,13 +149,22 @@ public class WordsDatabaseViewer {
     private void saveJsonToFile(JSONObject jsonObject) {
         try {
             File downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            File file = new File(downloadsFolder, "logged_words.json");
+            File jsonFile = new File(downloadsFolder, "logged_words.json");
 
-            FileWriter writer = new FileWriter(file);
-            writer.write(jsonObject.toString(4));
-            writer.flush();
-            writer.close();
-            Log.v("Exporting Data", "Database exported to: " + file.getAbsolutePath());
+            FileWriter jsonWriter = new FileWriter(jsonFile);
+            jsonWriter.write(jsonObject.toString(4));
+            jsonWriter.flush();
+            jsonWriter.close();
+
+            // Txt File -- Temporary will be separated as another function soon
+            File txtFile = new File(downloadsFolder, "logged_words.txt");
+
+            FileWriter txtWriter = new FileWriter(txtFile);
+            txtWriter.write(jsonObject.toString(4));
+            txtWriter.flush();
+            txtWriter.close();
+
+            Log.v("Exporting Data", "Database exported to: " + jsonFile.getAbsolutePath());
         } catch (Exception e) {
             Log.e("Exporting Data", "Error saving JSON file", e);
         }
