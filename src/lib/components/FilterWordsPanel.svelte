@@ -103,7 +103,7 @@
 </script>
 
 <div
-	class="sticky top-[4.1rem] z-10 flex w-screen flex-col items-center justify-center bg-tkl-background dark:bg-tkd-background"
+	class="sticky top-[4.1rem] z-10 flex w-screen flex-col items-center justify-center gap-1 bg-tkl-background dark:bg-tkd-background"
 >
 	<div class="flex w-full justify-around pt-2">
 		<div class="flex w-2/5 flex-col gap-1">
