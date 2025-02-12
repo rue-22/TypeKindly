@@ -24,7 +24,7 @@
 			};
 		});
 
-		// sorts records bjk wy date
+		// sorts records by date
 		newRecords.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 		if (JSON.stringify(newRecords) !== JSON.stringify(records)) {

@@ -105,6 +105,12 @@
 </main>
 
 <!-- <p class="text-white">{$databaseResult}</p> -->
-<button class="mt-2 rounded-lg border-2 py-2 text-white" onclick={fetchDaily}>Fetch Daily</button>
-<button class="mt-2 rounded-lg border-2 py-2 text-white" onclick={fetchAllWords}>Fetch Word Count</button>
-<p class="text-white">{$databaseWordCount} </p>
+<button
+	class="mt-2 rounded-lg border-2 py-2 text-white"
+	onclick={() => {
+		fetchDaily();
+		fetchAllWords();
+	}}>Fetch DB</button
+>
+<p class="text-white">{$databaseResult}</p>
+<p class="text-white">{$databaseWordCount}</p>

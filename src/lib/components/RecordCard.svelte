@@ -41,8 +41,8 @@
 
 <div class="flex items-center justify-between rounded-xl bg-tkd-surface px-4 text-white">
 	<div>
-		<p class="text-xl">{date}</p>
-		<p class="mb-2 text-lg font-bold">{total} words typed</p>
+		<p class="text-xl font-semibold">{date}</p>
+		<p class="mb-2 text-lg font-medium">{total} words typed</p>
 
 		<p class="text-lg">
 			<span class="font-semibold text-[#097969]">Good</span>: {good} ({goodPct}%)

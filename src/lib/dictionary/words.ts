@@ -1,7 +1,8 @@
 export interface Word {
-	tag: string; // Good OR Bad
-	lang: string; // English OR Filipino
-	word: string;
+  tag: string; // Good OR Bad
+  lang: string; // English OR Filipino
+  word: string;
+  count?: number;	
 }
 
 const words: Word[] = [
