@@ -68,3 +68,7 @@ export const fetchAllWords = async() => {
         console.error("Error fetching daily stats:", error);
     }
 }
+
+export const exportData = async() => {
+    KeyloggerPlugin.exportData();
+}
