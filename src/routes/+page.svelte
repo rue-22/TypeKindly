@@ -104,12 +104,12 @@
 	</div>
 </main>
 
-<button
-	class="mt-2 rounded-lg border-2 py-2 text-white"
-	onclick={() => {
-		fetchDaily();
-		fetchAllWords();
-	}}>Refresh</button
->
+<!-- <button -->
+<!-- 	class="mt-2 rounded-lg border-2 py-2 text-white" -->
+<!-- 	onclick={() => { -->
+<!-- 		fetchDaily(); -->
+<!-- 		fetchAllWords(); -->
+<!-- 	}}>Refresh</button -->
+<!-- > -->
 <!-- <p class="text-white">{$databaseResult}</p> -->
 <!-- <p class="text-white">{$databaseWordCount}</p> -->

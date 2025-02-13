@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
+	import { fetchDaily, fetchAllWords } from '$lib/plugins/dbFetcher';
 	import '../app.css';
 	let { children } = $props();
 

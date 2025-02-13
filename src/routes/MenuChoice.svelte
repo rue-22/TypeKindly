@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { type Writable } from 'svelte/store';
+	import { fetchDaily, fetchAllWords } from '$lib/plugins/dbFetcher';
 	import Book from '$lib/assets/Book.svelte';
 	import Calendar from '$lib/assets/Calendar.svelte';
 	import Home from '$lib/assets/Home.svelte';
@@ -16,7 +17,11 @@
 		class="{$lastClicked === menuName
 			? 'text-tkd-primary'
 			: ''} align-center grow-1 text-sm} flex h-full flex-1 flex-col items-center justify-center rounded-xl text-center"
-		onclick={() => lastClicked.set(menuName)}
+		onclick={async () => {
+			lastClicked.set(menuName);
+			await fetchDaily();
+			await fetchAllWords();
+		}}
 	>
 		{#if menuName == 'home'}
 			<Home />
