@@ -49,6 +49,7 @@
 		if (JSON.stringify(newWordsInDict) !== JSON.stringify(wordsInDict)) {
 			wordsInDict = newWordsInDict;
 		}
+
 		// fetch word count in dictionary
 		res = $databaseWordCount;
 		const indivWords = res.split('\n');
@@ -80,13 +81,15 @@
 			};
 		});
 
-		const sortedWordsWithCount = [...newWordsWithCount].sort((a, b) => {
-			if ($latestSort === 'Count') {
-				return b.count - a.count;
-			} else {
-				return a.word.localeCompare(b.word);
-			}
-		});
+		const sortedWordsWithCount = [...newWordsWithCount]
+			.filter((word) => (word.tag === 'Bad' ? word.count > 0 : true))
+			.sort((a, b) => {
+				if ($latestSort === 'Count') {
+					return b.count - a.count;
+				} else {
+					return a.word.localeCompare(b.word);
+				}
+			});
 		if (
 			sortedWordsWithCount.length !== wordsWithCount.length ||
 			!sortedWordsWithCount.every(
