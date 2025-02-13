@@ -82,7 +82,12 @@
 		});
 
 		const sortedWordsWithCount = [...newWordsWithCount]
-			.filter((word) => (word.tag === 'Bad' ? word.count > 0 : true))
+			.filter((word) => {
+				if (word.tag === 'Bad' || word.tag === 'Good') {
+					return word.count > 0;
+				}
+				return true;
+			})
 			.sort((a, b) => {
 				if ($latestSort === 'Count') {
 					return b.count - a.count;
