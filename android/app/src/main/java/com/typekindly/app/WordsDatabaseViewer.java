@@ -114,30 +114,30 @@ public class WordsDatabaseViewer {
     }
 
     public void exportData() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
         JSONObject databaseJson = new JSONObject();
         Log.v("Exporting Data", "Exporting Data...");
 
         try {
-            JSONArray loggedWordsArray = new JSONArray();
-            String query = "SELECT lw.word, lw.date_logged, lw.frequency, wd.tag, wd.language " +
-                    "FROM logged_words lw " +
-                    "JOIN word_dictionary wd ON lw.word = wd.word " +
-                    "ORDER BY lw.date_logged";
+            JSONArray dailyCount = new JSONArray();
+            Map<String, int[]> dailyStats = getDailyTagCounts();
 
-            Cursor cursor = db.rawQuery(query, null);
-            while (cursor.moveToNext()) {
-                JSONObject wordObject = new JSONObject();
-                wordObject.put("word", cursor.getString(0));
-                wordObject.put("date_logged", cursor.getString(1));
-                wordObject.put("frequency", cursor.getInt(2));
-                wordObject.put("tag", cursor.getString(3));
-                wordObject.put("language", cursor.getString(4));
-                loggedWordsArray.put(wordObject);
+            for (Map.Entry<String, int[]> entry : dailyStats.entrySet()){
+                String date = entry.getKey();
+                int[] frequencies = entry.getValue();
+
+                int goodCount = frequencies[0];
+                int badCount = frequencies[1];
+                int neutralCount = frequencies[2];
+
+                JSONObject dateEntry = new JSONObject();
+                dateEntry.put("date", date);
+                dateEntry.put("good", goodCount);
+                dateEntry.put("bad", badCount);
+                dailyCount.put(dateEntry);
             }
-            cursor.close();
 
-            databaseJson.put("logged_words", loggedWordsArray);
+            databaseJson.put("id", "arbitrary value"); // To be implemented
+            databaseJson.put("dailyStats", dailyCount);
 
             saveJsonToFile(databaseJson);
         } catch (Exception e) {
@@ -149,7 +149,7 @@ public class WordsDatabaseViewer {
     private void saveJsonToFile(JSONObject jsonObject) {
         try {
             File downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            File jsonFile = new File(downloadsFolder, "logged_words.json");
+            File jsonFile = new File(downloadsFolder, "TypeKindly_stats.json");
 
             FileWriter jsonWriter = new FileWriter(jsonFile);
             jsonWriter.write(jsonObject.toString(4));
@@ -157,7 +157,7 @@ public class WordsDatabaseViewer {
             jsonWriter.close();
 
             // Txt File -- Temporary will be separated as another function soon
-            File txtFile = new File(downloadsFolder, "logged_words.txt");
+            File txtFile = new File(downloadsFolder, "TypeKindly_stats.txt");
 
             FileWriter txtWriter = new FileWriter(txtFile);
             txtWriter.write(jsonObject.toString(4));
