@@ -6,6 +6,7 @@ export interface Word {
 }
 
 const words: Word[] = [
+  { "tag": "Good", "lang": "English", "word": "gg" },
   { "tag": "Good", "lang": "English", "word": "love" },
   { "tag": "Good", "lang": "English", "word": "luv" },
   { "tag": "Good", "lang": "English", "word": "ly" },
@@ -127,6 +128,10 @@ const words: Word[] = [
   { "tag": "Good", "lang": "Filipino", "word": "lolo" },
   { "tag": "Good", "lang": "Filipino", "word": "lola" },
   { "tag": "Good", "lang": "Filipino", "word": "tita" },
+  { "tag": "Good", "lang": "Filipino", "word": "ate" },
+  { "tag": "Good", "lang": "Filipino", "word": "teh" },
+  { "tag": "Good", "lang": "Filipino", "word": "kuya" },
+  { "tag": "Good", "lang": "Filipino", "word": "aya" },
   { "tag": "Good", "lang": "Filipino", "word": "tito" },
   { "tag": "Good", "lang": "Filipino", "word": "ninang" },
   { "tag": "Good", "lang": "Filipino", "word": "ninong" },
@@ -142,7 +147,6 @@ const words: Word[] = [
   { "tag": "Good", "lang": "Filipino", "word": "mabait" },
   { "tag": "Good", "lang": "Filipino", "word": "bait" },
   { "tag": "Good", "lang": "Filipino", "word": "buti" },
-  { "tag": "Good", "lang": "Filipino", "word": "mabuti" },
 
   { "tag": "Bad", "lang": "Filipino", "word": "amputa" },
   { "tag": "Bad", "lang": "Filipino", "word": "bilat" },
@@ -152,6 +156,7 @@ const words: Word[] = [
   { "tag": "Bad", "lang": "Filipino", "word": "bonak" },
   { "tag": "Bad", "lang": "Filipino", "word": "brocha" },
   { "tag": "Bad", "lang": "Filipino", "word": "burat" },
+  { "tag": "Bad", "lang": "Filipino", "word": "buset" },
   { "tag": "Bad", "lang": "Filipino", "word": "bwesit" },
   { "tag": "Bad", "lang": "Filipino", "word": "bwisit" },
   { "tag": "Bad", "lang": "Filipino", "word": "demonyo" },
@@ -188,7 +193,6 @@ const words: Word[] = [
   { "tag": "Bad", "lang": "Filipino", "word": "kinanginamo" },
   { "tag": "Bad", "lang": "Filipino", "word": "kupal" },
   { "tag": "Bad", "lang": "Filipino", "word": "pekpek" },
-  { "tag": "Bad", "lang": "Filipino", "word": "kepkep" },
   { "tag": "Bad", "lang": "Filipino", "word": "leche" },
   { "tag": "Bad", "lang": "Filipino", "word": "leching" },
   { "tag": "Bad", "lang": "Filipino", "word": "kepkep" },
@@ -248,6 +252,7 @@ const words: Word[] = [
   { "tag": "Bad", "lang": "Filipino", "word": "ulol" },
   { "tag": "Bad", "lang": "Filipino", "word": "ulul" },
   { "tag": "Bad", "lang": "Filipino", "word": "ungas" },
+  { "tag": "Bad", "lang": "Filipino", "word": "vovo" },
 
   { "tag": "Bad", "lang": "English", "word": "demon" },
   { "tag": "Bad", "lang": "English", "word": "devil" },
