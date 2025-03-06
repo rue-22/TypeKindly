@@ -209,7 +209,6 @@ const words: Word[] = [
   { "tag": "Bad", "lang": "Filipino", "word": "piste" },
   { "tag": "Bad", "lang": "Filipino", "word": "pisteng" },
   { "tag": "Bad", "lang": "Filipino", "word": "yawa" },
-  { "tag": "Bad", "lang": "Filipino", "word": "poke" },
   { "tag": "Bad", "lang": "Filipino", "word": "pota" },
   { "tag": "Bad", "lang": "Filipino", "word": "poki" },
   { "tag": "Bad", "lang": "Filipino", "word": "pokpok" },
