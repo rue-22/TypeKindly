@@ -59,7 +59,7 @@ public class WordsDatabaseViewer {
         String query = "SELECT lw.date_logged, wd.tag, lw.frequency " +
                 "FROM logged_words lw " +
                 "JOIN word_dictionary wd ON lw.word = wd.word " +
-                "ORDER BY lw.date_logged";
+                "ORDER BY lw.date_logged DESC";
 
         Cursor cursor = db.rawQuery(query, null);
 
