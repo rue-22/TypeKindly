@@ -35,6 +35,13 @@
 
 <main class="mt-3 flex flex-col gap-3">
 	{#each records as rec}
-		<RecordCard date={rec.date} good={rec.good} bad={rec.bad} />
+		{#if rec.date !== 'Empty DB Result'}
+			<RecordCard date={rec.date} good={rec.good} bad={rec.bad} />
+		{:else}
+			<div class="text-center text-lg text-white">
+				<p>Oops! You still don't have any records yet :(</p>
+				<p>Go type, <em>kindly</em> please.</p>
+			</div>
+		{/if}
 	{/each}
 </main>
