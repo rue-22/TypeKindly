@@ -15,8 +15,8 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
 		"sync": "cap sync",
-		"run:android": "npx cap run android",
-		"open:android": "cap open android"
+		"open:android": "cap open android",
+		"run:android": "vite build && cap sync"
 	},
 	"devDependencies": {
 		"@capacitor/android": "^7.0.1",
