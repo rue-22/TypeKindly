@@ -38,8 +38,8 @@
 	let totalGood = $state(0);
 	let totalBad = $state(0);
 
-	let good5Days: { x: string; y: number }[] = $state([]);
-	let bad5Days: { x: string; y: number }[] = $state([]);
+	let good7Days: { x: string; y: number }[] = $state([]);
+	let bad7Days: { x: string; y: number }[] = $state([]);
 
 	let options = $derived({
 		colors: ['#FF645C', '#097969'],
@@ -47,12 +47,12 @@
 			{
 				name: 'Good',
 				color: '#097969',
-				data: good5Days
+				data: good7Days
 			},
 			{
 				name: 'Bad',
 				color: '#FF645C',
-				data: bad5Days
+				data: bad7Days
 			}
 		],
 		chart: {
@@ -147,23 +147,23 @@
 			days = res.split('\n');
 		}
 
-		// get first 5 entries (for graph)
-		let newGood5Days: { x: string; y: number }[] = [];
-		let newBad5Days: { x: string; y: number }[] = [];
+		// get first 7 entries (for graph)
+		let newGood7Days: { x: string; y: number }[] = [];
+		let newBad7Days: { x: string; y: number }[] = [];
 		let n = Math.min(7, days.length);
-		let latest5Days = days.slice(0, n);
-		latest5Days.forEach((record) => {
+		let latest7Days = days.slice(0, n);
+		latest7Days.forEach((record) => {
 			const tokens = record.split(',');
 			const [date, good, bad] = tokens;
 			const [, m, d] = date.split('-');
-			newGood5Days.push({ x: m + '-' + d, y: parseInt(good) || 0 });
-			newBad5Days.push({ x: m + '-' + d, y: parseInt(bad) || 0 });
+			newGood7Days.push({ x: m + '-' + d, y: parseInt(good) || 0 });
+			newBad7Days.push({ x: m + '-' + d, y: parseInt(bad) || 0 });
 		});
-		if (JSON.stringify(newGood5Days) !== JSON.stringify(good5Days)) {
-			good5Days = [...newGood5Days];
+		if (JSON.stringify(newGood7Days) !== JSON.stringify(good7Days)) {
+			good7Days = [...newGood7Days];
 		}
-		if (JSON.stringify(newBad5Days) !== JSON.stringify(bad5Days)) {
-			bad5Days = [...newBad5Days];
+		if (JSON.stringify(newBad7Days) !== JSON.stringify(bad7Days)) {
+			bad7Days = [...newBad7Days];
 		}
 
 		let newTotalGood = 0;
@@ -221,18 +221,18 @@
 		</div>
 	</div>
 
-	<!-- last 5 days -->
-	<!-- {#if good5Days.length > 0} -->
-	<div class="max-w-full rounded-xl bg-tkd-surface px-4 pb-2 pt-2">
-		<h3 class="text-xl font-medium">
-			Last {Math.min(7, good5Days.length) !== 1
-				? `${Math.min(7, good5Days.length)} Records`
-				: '1 Record'}
-		</h3>
-		<Chart {options} />
-		<!-- <Chart {options} class="z-0 flex w-full items-center justify-center rounded-md border" /> -->
-	</div>
-	<!-- {/if} -->
+	<!-- last 7 days -->
+	{#if good7Days.length > 0}
+		<div class="max-w-full rounded-xl bg-tkd-surface px-4 pb-2 pt-2">
+			<h3 class="text-xl font-medium">
+				Last {Math.min(7, good7Days.length) !== 1
+					? `${Math.min(7, good7Days.length)} Records`
+					: '1 Record'}
+			</h3>
+			<Chart {options} />
+			<!-- <Chart {options} class="z-0 flex w-full items-center justify-center rounded-md border" /> -->
+		</div>
+	{/if}
 </main>
 
 <!-- <button -->
