@@ -98,6 +98,8 @@ const words: Word[] = [
   { "tag": "Good", "lang": "English", "word": "alrite" },
   { "tag": "Good", "lang": "English", "word": "merry" },
   { "tag": "Good", "lang": "English", "word": "xmas" },
+  { "tag": "Good", "lang": "English", "word": "hello" },
+  { "tag": "Good", "lang": "English", "word": "hi" },
 
   { "tag": "Good", "lang": "Filipino", "word": "po" },
   { "tag": "Good", "lang": "Filipino", "word": "opo" },
@@ -147,6 +149,8 @@ const words: Word[] = [
   { "tag": "Good", "lang": "Filipino", "word": "mabait" },
   { "tag": "Good", "lang": "Filipino", "word": "bait" },
   { "tag": "Good", "lang": "Filipino", "word": "buti" },
+  { "tag": "Good", "lang": "Filipino", "word": "kamusta" },
+  { "tag": "Good", "lang": "Filipino", "word": "musta" },
 
   { "tag": "Bad", "lang": "Filipino", "word": "amputa" },
   { "tag": "Bad", "lang": "Filipino", "word": "bilat" },
