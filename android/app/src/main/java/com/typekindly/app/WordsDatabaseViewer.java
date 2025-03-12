@@ -115,9 +115,11 @@ public class WordsDatabaseViewer {
     }
 
     private final String deviceId = UUID.randomUUID().toString();
-    public void exportData() {
+    public boolean exportData() {
         JSONObject databaseJson = new JSONObject();
         Log.v("Exporting Data", "Exporting Data...");
+
+        boolean isSuccess = false;
 
         try {
             JSONArray dailyCount = new JSONArray();
@@ -138,14 +140,16 @@ public class WordsDatabaseViewer {
                 dailyCount.put(dateEntry);
             }
 
-            databaseJson.put("id", deviceId); 
+            databaseJson.put("id", deviceId);
             databaseJson.put("dailyStats", dailyCount);
 
             saveJsonToFile(databaseJson);
+
+            isSuccess = true;
         } catch (Exception e) {
             Log.e("Exporting Data", "Error exporting database", e);
         }
-
+        return isSuccess;
     }
 
     private void saveJsonToFile(JSONObject jsonObject) {
