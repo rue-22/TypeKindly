@@ -24,8 +24,8 @@
 	<ExportDatabase />
 	<div class="rounded-lg bg-tkd-surface px-4 py-4 text-justify text-white">
 		<span class="text-xl font-semibold">App Info:</span>
-		<p class="">Build Version: v1.0.0</p>
-		<p class="">Build Date: Feb 15, 2024</p>
+		<p class="">Build Version: v2.0.0</p>
+		<p class="">Build Date: March 13, 2024</p>
 		<!-- Replace build ID based on git commit or something, can be automated soon -Ligs 
 			commit ID on build: afa15c95b94e91b4327548b3145c5e3d8dc875e2 yung next commit after neto
 		-->
