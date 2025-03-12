@@ -1,4 +1,4 @@
-<accessibility-service android:accessibilityEventTypes="typeViewTextChanged"
+<accessibility-service android:accessibilityEventTypes="typeViewTextChanged|typeViewClicked|typeWindowContentChanged"
     android:accessibilityFeedbackType="feedbackSpoken"
     android:notificationTimeout="100"
     android:canRetrieveWindowContent="true"

