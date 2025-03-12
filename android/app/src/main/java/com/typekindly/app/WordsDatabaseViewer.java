@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class WordsDatabaseViewer {
     private final WordsDatabase dbHelper;
@@ -113,6 +114,7 @@ public class WordsDatabaseViewer {
         return wordFrequencies;
     }
 
+    private final String deviceId = UUID.randomUUID().toString();
     public void exportData() {
         JSONObject databaseJson = new JSONObject();
         Log.v("Exporting Data", "Exporting Data...");
@@ -136,7 +138,7 @@ public class WordsDatabaseViewer {
                 dailyCount.put(dateEntry);
             }
 
-            databaseJson.put("id", "arbitrary value"); // To be implemented
+            databaseJson.put("id", deviceId); 
             databaseJson.put("dailyStats", dailyCount);
 
             saveJsonToFile(databaseJson);
