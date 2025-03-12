@@ -98,7 +98,14 @@ public class KeyloggerPlugin extends Plugin{
     public void exportData(PluginCall call){
         Log.v("Plugin Methods", "Exporting Data: Attempting to export");
         WordsDatabaseViewer dataViewer = new WordsDatabaseViewer(getContext());
-        dataViewer.exportData();
+        boolean isSuccess = dataViewer.exportData();
+
+        JSObject data = new JSObject();
+        data.put("isExportDataSuccess",isSuccess);
+
+        call.resolve(data);
+
+
         Log.v("Plugin Methods", "Exporting Data: Export Successful");
     }
 }
