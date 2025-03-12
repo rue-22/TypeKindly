@@ -222,7 +222,7 @@
 	</div>
 
 	<!-- last 7 days -->
-	{#if good7Days.length > 0}
+	{#if good7Days.length > 1}
 		<div class="max-w-full rounded-xl bg-tkd-surface px-4 pb-2 pt-2">
 			<h3 class="text-xl font-medium">
 				Last {Math.min(7, good7Days.length) !== 1
