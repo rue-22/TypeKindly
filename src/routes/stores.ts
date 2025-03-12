@@ -6,3 +6,4 @@ export const databaseWordCount = writable<string>('Nothing fetch yet')
 export const latestTag = writable<string>('Good')
 export const latestLang = writable<string>('All')
 export const latestSort = writable<string>('Alphabetical')
+export const isFetchSuccess = writable(false);

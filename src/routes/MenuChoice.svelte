@@ -6,6 +6,7 @@
 	import Calendar from '$lib/assets/Calendar.svelte';
 	import Home from '$lib/assets/Home.svelte';
 	import Settings from '$lib/assets/Settings.svelte';
+	import { isFetchSuccess } from './stores';
 
 	let { menuName } = $props();
 	const lastClicked: Writable<string> = getContext('lastClicked');
@@ -21,6 +22,7 @@
 			lastClicked.set(menuName);
 			await fetchDaily();
 			await fetchAllWords();
+			isFetchSuccess.set(false);
 		}}
 	>
 		{#if menuName == 'home'}

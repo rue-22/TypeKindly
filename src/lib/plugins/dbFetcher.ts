@@ -1,4 +1,4 @@
-import { databaseResult, databaseWordCount } from '../../routes/stores.ts';
+import { databaseResult, databaseWordCount, isFetchSuccess } from '../../routes/stores.ts';
 import { KeyloggerPlugin } from './keyloggerPlugin.ts';
 import type { DailyStats } from './keyloggerPlugin.ts';
 
@@ -70,5 +70,12 @@ export const fetchAllWords = async() => {
 }
 
 export const exportData = async() => {
-    KeyloggerPlugin.exportData();
+    if (!KeyloggerPlugin) {
+        console.error("KeyloggerPlugin is not available");
+        return;
+    }
+    
+    const data = await KeyloggerPlugin.exportData();
+    isFetchSuccess.set(data.isSuccess);
+    console.log("Export status:", data.isSuccess);
 }
