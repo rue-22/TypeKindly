@@ -1,5 +1,5 @@
 # TypeKindly
-TypeKindly is blah blah blah
+TypeKindly is an Android app that tracks the number of positive and negative words typed by the user, helping to analyze typing patterns and sentiment.
 
 # Development
 The mobile application is a single-page [SvelteKit](https://svelte.dev/) application with [CapacitorJS](https://capacitorjs.com/) for cross-platform support for Android.
