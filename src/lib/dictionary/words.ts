@@ -100,6 +100,7 @@ const words: Word[] = [
   { "tag": "Good", "lang": "English", "word": "xmas" },
   { "tag": "Good", "lang": "English", "word": "hello" },
   { "tag": "Good", "lang": "English", "word": "hi" },
+  { "tag": "Good", "lang": "English", "word": "sixseven" },
 
   { "tag": "Good", "lang": "Filipino", "word": "po" },
   { "tag": "Good", "lang": "Filipino", "word": "opo" },
